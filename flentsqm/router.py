@@ -29,14 +29,15 @@ import subprocess
 
 class Router:
     
-    def __init__(self, ip="192.168.1.1", user="root"):
+    def __init__(self, ip="192.168.1.1", user="root", password=""):
         self._ip = ip
         self._user = user
+        slef._password = password
         
     def run_cmd(self, cmd, print_output=False):
         if isinstance(cmd, str):
             cmd = cmd.split()
-        sp = subprocess.run(["ssh", f"{self._user}@{self._ip}"] + cmd, capture_output=True)
+        sp = subprocess.run(["sshpass", f"-p {self._password} ssh {self._user}@{self._ip}"] + cmd, capture_output=True)
         if sp.stderr:
             print(sp.stderr.decode('utf-8'))
         if print_output:
