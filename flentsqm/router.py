@@ -54,6 +54,7 @@ class Router:
             state = 1
         else:
             state = 0
+        self.run_cmd("uci set sqm.test=queue")
         self.run_cmd(f"uci set sqm.test.enabled='{state}'")
         self.run_cmd("uci commit")
         self.sqm_restart(print_output)
