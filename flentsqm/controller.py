@@ -160,7 +160,7 @@ class PassController:
         if self.tunnel is None or self.tunnel.lower() == "none":
             self.tunnel = None
             self.host = '10.0.0.2'
-            self.iface = router.run_cmd("uci get network.wan.ifname").stdout.decode('utf-8').strip()
+            self.iface = router.run_cmd("uci get network.wan.device").stdout.decode('utf-8').strip()
             if not self.iface:
                 print("No interface for wan returned. Exiting")
                 exit(1)
